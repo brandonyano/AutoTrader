@@ -780,7 +780,7 @@ class AutoData:
         if count is not None and start_time is None and end_time is None:
             data = data.tail(count)
 
-        if data.index.tzinfo is None:
+        if not hasattr(data.index, "tzinfo"):
             # Data is naive, add UTC timezone
             data.index = data.index.tz_localize(timezone.utc)
 
